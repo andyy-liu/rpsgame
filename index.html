@@ -8,7 +8,6 @@
 <body>
     
     <script>
-    console.log("Hello World")
 
     function getComputerChoice() {
         let randomNumber = Math.random()
@@ -61,7 +60,8 @@
         }
 
         for (let round = 1; round < 6; round++) {
-            let humanSelection = getHumanChoice()
+            // variables have to put here so they are recalled everytime a new round is played 
+            let humanSelection = getHumanChoice() 
             let computerSelection = getComputerChoice()
             playRound(humanSelection, computerSelection)
             console.log("You: " + humanScore + " Computer: " + computerScore)
@@ -82,7 +82,7 @@
 </body>
 </html>
 
-step 2: Create function getComputerChoice that returns 'rock', 'paper', or 'scissors' randomly.
+<!-- step 2: Create function getComputerChoice that returns 'rock', 'paper', or 'scissors' randomly.
 - use math.random to generate a numebr between 0 and 1
 - use if else statement to return rock, paper, or scissors based on number generated
 - 0 to 0.33, 0.34 to 0.66, 0.67 to 1
@@ -98,4 +98,4 @@ step 5: create function called playRound - determines the winner, increments the
         - if humanChoice ===""
     - switch(humanChoice)
     - case computerChoice = tie
-    - case 
+    - case  -->
