@@ -22,7 +22,7 @@
     
     // uses prompt to get input from the human playing.
     function getHumanChoice() {
-        let humanChoice = prompt("Enter R for rock, P for paper, and S for scissors.")
+        let humanChoice = String(prompt("Enter R for rock, P for paper, and S for scissors.")).toLowerCase();
         humanChoice = humanChoice.toLowerCase();
 
         if (humanChoice === "r") {
@@ -32,12 +32,12 @@
         } else if (humanChoice === "s") {
             return "Scissors"
         } else {
-            // want to keep asking for a prompt until valid input is entered which requires while loop
             alert("Not a valid entry.") 
+            getHumanChoice(); // reprompts for input
         };
     }
 
-    function playGame() {
+    function playGame(num) {
 
         let humanScore = 0
         let computerScore = 0
@@ -60,7 +60,7 @@
             }
         }
 
-        for (let round = 1; round < 6; round++) {
+        for (let round = 1; round < num + 1; round++) {
             // variables have to put here so they are recalled everytime a new round is played 
             let humanSelection = getHumanChoice() 
             let computerSelection = getComputerChoice()
@@ -77,7 +77,7 @@
         }
     }
 
-    console.log(playGame())
+    console.log(playGame(5))
     </script>
 
 </body>
