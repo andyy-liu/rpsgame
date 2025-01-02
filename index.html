@@ -8,7 +8,7 @@
 <body>
     
     <script>
-
+    // uses Math.random to assign the computer a random option
     function getComputerChoice() {
         let randomNumber = Math.random()
         if (randomNumber <= 0.33) {
@@ -20,7 +20,7 @@
         }
     };
     
-
+    // uses prompt to get input from the human playing.
     function getHumanChoice() {
         let humanChoice = prompt("Enter R for rock, P for paper, and S for scissors.")
         humanChoice = humanChoice.toLowerCase();
@@ -32,7 +32,8 @@
         } else if (humanChoice === "s") {
             return "Scissors"
         } else {
-            alert("Not a valid entry.")
+            // want to keep asking for a prompt until valid input is entered which requires while loop
+            alert("Not a valid entry.") 
         };
     }
 
