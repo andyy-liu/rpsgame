@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    console.log("Hello World")
 
+    function getComputerChoice() {
+        let randomNumber = Math.round(Math.random() * 100) / 100
+
+        if (randomNumber <= 0.33) {
+            return "Rock"
+        } else if (0.33 < randomNumber && randomNumber <= 0.66) {
+            return "Scissors"
+        } else {
+            return "Paper"
+        }
+    };
+    
+    console.log(getComputerChoice())
+
+    function getHumanChoice() {
+        let humanChoice = prompt("Enter R for rock, P for paper, and S for scissors.")
+        humanChoice = humanChoice.toLowerCase();
+
+        if (humanChoice === "r") {
+            return "Rock"
+        } else if (humanChoice === "p") {
+            return "Paper"
+        } else if (humanChoice === "s") {
+            return "Scissors"
+        } else {
+            alert("Not a valid entry.")
+        };
+    }
+
+    console.log(getHumanChoice())
+
+    let humanScore = 0
+    let computerScore = 0
+
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) {
+            return "Tie"
+        } else if (
+            (humanChoice === "Rock" && computerChoice === "Scissors") ||
+            (humanChoice === "Scissors" && computerChoice === "Paper") ||
+            (humanChoice === "Paper" && computerChoice === "Rock")
+        ) {
+            return "You win!"
+        } else {
+            return "You lose."
+        }
+    }
+
+    const humanSelection = getHumanChoice()
+    const computerSelection = getComputerChoice()
+
+    playRound(humanSelection, computerSelection)
+    </script>
+
+</body>
+</html>
+
+step 2: Create function getComputerChoice that returns 'rock', 'paper', or 'scissors' randomly.
+- use math.random to generate a numebr between 0 and 1
+- use if else statement to return rock, paper, or scissors based on number generated
+- 0 to 0.33, 0.34 to 0.66, 0.67 to 1
+
+step 3: create function getHumanChoice that takes the user choice and returns it
+
+step 5: create function called playRound - determines the winner, increments the score, and logs an announcement
+- determining the winner
+    - if humanchoice != computerChoice
+        - if humanChoice === "rock" && computerChoice === "Paper" then lose 
+        - if humanChoice === " rock" && computerchoice === "scissors" then win 
+        - if humanChoice === "scissors" && computerChoice === "paper" then winner
+        - if humanChoice ===""
+    - switch(humanChoice)
+    - case computerChoice = tie
+    - case 
