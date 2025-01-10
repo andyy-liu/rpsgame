@@ -6,78 +6,85 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="wrapper">
+
+    </div>
+    <div id="btn-container">
+        <button id="Rock">Rock</button>
+        <button id="Paper">Paper</button>
+        <button id="Scissors">Scissors</button>
+    </div>
     <script>
-    // uses Math.random to assign the computer a random option
-    function getComputerChoice() {
-        let randomNumber = Math.random()
-        if (randomNumber <= 0.33) {
-            return "Rock"
-        } else if (randomNumber <= 0.66) {
-            return "Scissors"
-        } else {
-            return "Paper"
-        }
-    };
-    
-    // uses prompt to get input from the human playing.
-    function getHumanChoice() {
-        let humanChoice = String(prompt("Enter R for rock, P for paper, and S for scissors.")).toLowerCase();
-        humanChoice = humanChoice.toLowerCase();
-
-        if (humanChoice === "r") {
-            return "Rock"
-        } else if (humanChoice === "p") {
-            return "Paper"
-        } else if (humanChoice === "s") {
-            return "Scissors"
-        } else {
-            alert("Not a valid entry.") 
-            getHumanChoice(); // reprompts for input
-        };
-    }
-
-    function playGame(num) {
-
         let humanScore = 0
         let computerScore = 0
 
-        function playRound(humanChoice, computerChoice) {
-            console.log("You played: " + humanChoice + " | Computer played: " + computerChoice)
+        const wrapper = document.querySelector("#wrapper")
 
-            if (humanChoice === computerChoice) {
-                return console.log("Tie");
-            } else if (
-                (humanChoice === "Rock" && computerChoice === "Scissors") ||
-                (humanChoice === "Scissors" && computerChoice === "Paper") ||
-                (humanChoice === "Paper" && computerChoice === "Rock")
-            ) {
-                ++humanScore
-                return console.log("You Win!");
+        const humanCtr = document.createElement("p")
+        humanCtr.textContent = "Human Score: " + humanScore
+
+        const computerCtr = document.createElement("p")
+        computerCtr.textContent = "Computer Score: " + computerScore
+        
+        const declare = document.createElement("p")
+
+        wrapper.appendChild(humanCtr)
+        wrapper.appendChild(computerCtr)
+        wrapper.appendChild(declare)
+
+        const buttons = document.querySelectorAll("button")
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => playGame(button.id))
+        })
+
+        function getComputerChoice() {
+            let randomNumber = Math.random()
+            if (randomNumber <= 0.33) {
+                return "Rock"
+            } else if (randomNumber <= 0.66) {
+                return "Scissors"
             } else {
-                ++computerScore
-                return console.log("You Lose.");
+                return "Paper"
+            }
+        };
+
+        function playRound(humanChoice, computerChoice) {
+                console.log("You played: " + humanChoice + " | Computer played: " + computerChoice)
+
+                if (humanChoice === computerChoice) {
+                    return console.log("Tie");
+                } else if (
+                    (humanChoice === "Rock" && computerChoice === "Scissors") ||
+                    (humanChoice === "Scissors" && computerChoice === "Paper") ||
+                    (humanChoice === "Paper" && computerChoice === "Rock")
+                ) {
+                    ++humanScore
+                    humanCtr.textContent = "Human Score: " + humanScore
+                } else {
+                    ++computerScore
+                    computerCtr.textContent = "Computer Score: " + computerScore
+                }
+            }
+
+        function playGame(buttonId) {
+            
+            let humanChoice = buttonId
+            let computerChoice = getComputerChoice()
+
+            playRound(humanChoice, computerChoice)
+
+            if (humanScore === 5) {
+                declare.textContent = "You are the winner!"
+            } else if (computerScore === 5) {
+                declare.textContent = "Sorry... you lost"
+                return "Sorry.. you lost."
+            } else if (humanScore === 5 && computerScore === 5){
+                declare.textContent = "It was a tie."
             }
         }
 
-        for (let round = 1; round < num + 1; round++) {
-            // variables have to put here so they are recalled everytime a new round is played 
-            let humanSelection = getHumanChoice() 
-            let computerSelection = getComputerChoice()
-            playRound(humanSelection, computerSelection)
-            console.log("You: " + humanScore + " Computer: " + computerScore)
-        }
-
-        if (humanScore > computerScore) {
-            return "You are the winner!"
-        } else if (humanScore === computerScore) {
-            return "It was a tie."
-        } else {
-            return "Sorry.. you lost."
-        }
-    }
-
-    console.log(playGame(5))
+    
     </script>
 
 </body>
